@@ -15,7 +15,11 @@ pipeline {
                     } else {
                         bat '''
                             set "PATH=C:\\Program Files\\maven\\bin;%PATH%"
-                            mvn -B test
+                            if exist "C:\\Users\\aakas\\.m2\\repository" (
+                                mvn -B test -Dmaven.repo.local="C:\\Users\\aakas\\.m2\\repository"
+                            ) else (
+                                mvn -B test
+                            )
                         '''
                     }
                 }
@@ -29,7 +33,11 @@ pipeline {
                     } else {
                         bat '''
                             set "PATH=C:\\Program Files\\maven\\bin;%PATH%"
-                            mvn -B package -DskipTests
+                            if exist "C:\\Users\\aakas\\.m2\\repository" (
+                                mvn -B package -DskipTests -Dmaven.repo.local="C:\\Users\\aakas\\.m2\\repository"
+                            ) else (
+                                mvn -B package -DskipTests
+                            )
                         '''
                     }
                 }
