@@ -13,7 +13,10 @@ pipeline {
                     if (isUnix()) {
                         sh 'mvn -B test'
                     } else {
-                        bat 'mvn -B test'
+                        bat '''
+                            set "PATH=C:\\Program Files\\maven\\bin;%PATH%"
+                            mvn -B test
+                        '''
                     }
                 }
             }
@@ -24,7 +27,10 @@ pipeline {
                     if (isUnix()) {
                         sh 'mvn -B package -DskipTests'
                     } else {
-                        bat 'mvn -B package -DskipTests'
+                        bat '''
+                            set "PATH=C:\\Program Files\\maven\\bin;%PATH%"
+                            mvn -B package -DskipTests
+                        '''
                     }
                 }
             }
